@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class HospitalServiceImpl implements HospitalService {
 
-    private HospitalRepository hospitalRepository;
+    private final HospitalRepository hospitalRepository;
 
     @Autowired
     public HospitalServiceImpl(HospitalRepository hospitalRepository) {

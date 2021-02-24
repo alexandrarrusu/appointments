@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
 
-    private AppointmentRepository appointmentRepository;
+    private final AppointmentRepository appointmentRepository;
 
     @Autowired
     public AppointmentServiceImpl(AppointmentRepository appointmentRepository) {

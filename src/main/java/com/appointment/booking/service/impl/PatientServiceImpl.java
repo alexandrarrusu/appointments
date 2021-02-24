@@ -13,8 +13,8 @@ import java.util.Optional;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-    private PatientRepository patientRepository;
-    private PatientValidator patientValidator = new PatientValidator();
+    private final PatientRepository patientRepository;
+    private final PatientValidator patientValidator = new PatientValidator();
 
     @Autowired
     public PatientServiceImpl(PatientRepository patientRepository) {

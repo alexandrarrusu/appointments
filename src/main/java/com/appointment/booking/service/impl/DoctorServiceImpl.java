@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
-    private DoctorRepository doctorRepository;
+    private final DoctorRepository doctorRepository;
 
     @Autowired
     public DoctorServiceImpl(DoctorRepository doctorRepository) {
