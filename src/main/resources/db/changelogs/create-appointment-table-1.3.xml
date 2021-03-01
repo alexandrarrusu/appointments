@@ -21,9 +21,6 @@
             <column name="employee_id" type="bigint">
                 <constraints nullable="false" foreignKeyName="fk_employee_id" references="employee(id)"/>
             </column>
-            <column name="place_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="fk_place_id" references="place(id)"/>
-            </column>
             <column name="creation_time" type="timestamp" valueDate="${now}">
                 <constraints nullable="false" unique="false" />
             </column>

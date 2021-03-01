@@ -13,8 +13,7 @@ public class Employee {
     private Long id;
     private String firstname;
     private String lastname;
-    private Long id_service;
-    private Long id_place;
+    private Long place_id;
 
     public Long getId() {
         return id;
@@ -28,11 +27,7 @@ public class Employee {
         return lastname;
     }
 
-    public Long getId_service() {
-        return id_service;
-    }
-
-    public Long getId_place() {
-        return id_place;
+    public Long getPlace_id() {
+        return place_id;
     }
 }

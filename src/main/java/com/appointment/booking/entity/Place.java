@@ -13,7 +13,6 @@ public class Place {
     private String id;
     private String name;
     private String address;
-    private Long service_id;
 
     public String getId() {
         return id;
@@ -25,9 +24,5 @@ public class Place {
 
     public String getAddress() {
         return address;
-    }
-
-    public Long getService_id() {
-        return service_id;
     }
 }

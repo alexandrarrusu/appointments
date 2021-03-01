@@ -1,13 +1,11 @@
 package com.appointment.booking.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Time;
+import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -16,13 +14,15 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonFormat(pattern = "dd.MM.yyyy")
+    @Temporal(TemporalType.DATE)
     private Date date;
-    private Time time;
+    @JsonFormat(pattern="HH:mm")
+    private LocalTime time;
     private Long client_id;
     private Long employee_id;
-    private Long place_id;
     @CreationTimestamp
-    private Timestamp creationDateTime;
+    private Timestamp creationTime;
 
     public Long getId() {
         return id;
@@ -32,7 +32,7 @@ public class Appointment {
         return date;
     }
 
-    public Time getTime() {
+    public LocalTime getTime() {
         return time;
     }
 
@@ -44,11 +44,7 @@ public class Appointment {
         return employee_id;
     }
 
-    public Long getPlace_id() {
-        return place_id;
-    }
-
-    public Timestamp getCreationDateTime() {
-        return creationDateTime;
+    public Timestamp getCreationTime() {
+        return creationTime;
     }
 }
