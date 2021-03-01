@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS appointment (
     id serial PRIMARY KEY,
     patient_id bigint references patient(id),
     doctor_id bigint references doctor(id),
+    hospital_id bigint references hospital(id),
     date DATE NOT NULL,
     time TIME NOT NULL
 );

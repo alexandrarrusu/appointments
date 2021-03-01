@@ -17,6 +17,7 @@ public class Appointment {
     private Time time;
     private Long patient_id;
     private Long doctor_id;
+    private Long appointment_id;
 
     public Long getId() {
         return id;
@@ -56,5 +57,13 @@ public class Appointment {
 
     public void setDoctor_id(Long doctor_id) {
         this.doctor_id = doctor_id;
+    }
+
+    public Long getAppointment_id() {
+        return appointment_id;
+    }
+
+    public void setAppointment_id(Long appointment_id) {
+        this.appointment_id = appointment_id;
     }
 }
