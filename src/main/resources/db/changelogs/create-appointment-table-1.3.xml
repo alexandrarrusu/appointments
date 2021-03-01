@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="Alexandra" id="changelog-1.3">
+        <createTable tableName="appointment">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="time" type="time">
+                <constraints nullable="false" unique="false"/>
+            </column>
+            <column name="client_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_client_id" references="client(id)"/>
+            </column>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_id" references="employee(id)"/>
+            </column>
+            <column name="place_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_place_id" references="place(id)"/>
+            </column>
+            <column name="creation_time" type="timestamp" valueDate="${now}">
+                <constraints nullable="false" unique="false" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
