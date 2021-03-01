@@ -1,10 +1,13 @@
 package com.appointment.booking.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -15,55 +18,37 @@ public class Appointment {
     private Long id;
     private Date date;
     private Time time;
-    private Long patient_id;
-    private Long doctor_id;
-    private Long appointment_id;
+    private Long client_id;
+    private Long employee_id;
+    private Long place_id;
+    @CreationTimestamp
+    private Timestamp creationDateTime;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public Time getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
-        this.time = time;
+    public Long getClient_id() {
+        return client_id;
     }
 
-    public Long getPatient_id() {
-        return patient_id;
+    public Long getEmployee_id() {
+        return employee_id;
     }
 
-    public void setPatient_id(Long patient_id) {
-        this.patient_id = patient_id;
+    public Long getPlace_id() {
+        return place_id;
     }
 
-    public Long getDoctor_id() {
-        return doctor_id;
-    }
-
-    public void setDoctor_id(Long doctor_id) {
-        this.doctor_id = doctor_id;
-    }
-
-    public Long getAppointment_id() {
-        return appointment_id;
-    }
-
-    public void setAppointment_id(Long appointment_id) {
-        this.appointment_id = appointment_id;
+    public Timestamp getCreationDateTime() {
+        return creationDateTime;
     }
 }

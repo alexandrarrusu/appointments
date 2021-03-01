@@ -6,35 +6,28 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Department {
+public class Place {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String name;
-    private Long doctor_id;
+    private String address;
+    private Long service_id;
 
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getAddress() {
+        return address;
     }
 
-    public Long getDoctor_id() {
-        return doctor_id;
-    }
-
-    public void setDoctor_id(Long doctor_id) {
-        this.doctor_id = doctor_id;
+    public Long getService_id() {
+        return service_id;
     }
 }
