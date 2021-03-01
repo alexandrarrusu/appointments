@@ -1,9 +1,9 @@
 package com.appointment.booking.repository;
 
-import com.appointment.booking.entity.Service;
+import com.appointment.booking.entity.Offer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ServiceRepository extends JpaRepository<Service, Long> {
+public interface OfferRepository extends JpaRepository<Offer, Long> {
 }
