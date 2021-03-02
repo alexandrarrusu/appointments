@@ -10,5 +10,4 @@ public interface PlaceService {
     void savePlace(Place place);
     Optional<Place> getPlaceById(Long id);
     List<Place> getAllPlaces();
-
 }

@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 @Entity
 public class Appointment {
@@ -21,6 +20,8 @@ public class Appointment {
     private LocalTime time;
     private Long client_id;
     private Long employee_id;
+    private Long offer_id;
+    private Long place_id;
     @CreationTimestamp
     private Timestamp creationTime;
 
@@ -46,5 +47,13 @@ public class Appointment {
 
     public Timestamp getCreationTime() {
         return creationTime;
+    }
+
+    public Long getOffer_id() {
+        return offer_id;
+    }
+
+    public Long getPlace_id() {
+        return place_id;
     }
 }

@@ -1,51 +1,99 @@
 package com.appointment.booking.email;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Email {
 
-    private String mailTo;
-    private LocalDate date;
-    private LocalTime time;
-    private String employeeName;
+    private final String mailTo;
+    private final LocalDate date;
+    private final LocalTime time;
+    private final String employeeName;
+    private final String offer;
+    private final String place;
+    private final Double price;
+    private final Timestamp creationDate;
 
-    public Email(String mailTo, LocalDate date, LocalTime time, String employeeName) {
-        this.mailTo = mailTo;
-        this.date = date;
-        this.time = time;
-        this.employeeName = employeeName;
+    private Email(EmailBuilder builder) {
+        this.mailTo = builder.mailTo;
+        this.date = builder.date;
+        this.time = builder.time;
+        this.employeeName = builder.employeeName;
+        this.offer = builder.offer;
+        this.place = builder.place;
+        this.price = builder.price;
+        this.creationDate = builder.creationDate;
     }
 
     public String getMailTo() {
         return mailTo;
     }
 
-    public void setMailTo(String mailTo) {
-        this.mailTo = mailTo;
-    }
-
     public LocalDate getDate() {
         return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public LocalTime getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
     public String getEmployeeName() {
         return employeeName;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public String getOffer() {
+        return offer;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Timestamp getCreationDate() {
+        return creationDate;
+    }
+
+    public static class EmailBuilder {
+        private final String mailTo;
+        private final String place;
+        private final String employeeName;
+        private final LocalDate date;
+        private final LocalTime time;
+        private String offer;
+        private Double price;
+        private Timestamp creationDate;
+
+        public EmailBuilder(String mailTo, String place, String employeeName, LocalDate date, LocalTime time) {
+            this.mailTo = mailTo;
+            this.place = place;
+            this.employeeName = employeeName;
+            this.date = date;
+            this.time = time;
+        }
+
+        public EmailBuilder offer(String offer) {
+            this.offer = offer;
+            return this;
+        }
+
+        public EmailBuilder price(Double price) {
+            this.price = price;
+            return this;
+        }
+
+        public EmailBuilder creationDate(Timestamp creationDate) {
+            this.creationDate = creationDate;
+            return this;
+        }
+
+        public Email build() {
+            Email email =  new Email(this);
+            return email;
+        }
     }
 }

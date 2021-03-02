@@ -10,6 +10,4 @@ public interface ClientService {
     void saveClient(Client client);
     Optional<Client> getClientById(Long id);
     List<Client> getAllClients();
-    String getEmailById(Long id);
-
 }
