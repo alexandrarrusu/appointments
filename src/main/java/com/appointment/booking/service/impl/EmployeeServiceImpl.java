@@ -33,4 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
+
+    @Override
+    public String getNameById(Long id) {
+        return employeeRepository.getNameById(id);
+    }
 }

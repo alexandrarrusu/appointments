@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -15,8 +16,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JsonFormat(pattern = "dd.MM.yyyy")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
     @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private Long client_id;
@@ -28,7 +28,7 @@ public class Appointment {
         return id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 

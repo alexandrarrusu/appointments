@@ -1,5 +1,6 @@
 package com.appointment.booking.controller;
 
+import com.appointment.booking.email.EmailService;
 import com.appointment.booking.entity.Appointment;
 import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.response.Response;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,15 +21,20 @@ import static java.util.Collections.emptyList;
 public class AppointmentController {
 
     private final AppointmentServiceImpl appointmentService;
+    private final EmailService emailService;
 
     @Autowired
-    public AppointmentController(AppointmentServiceImpl appointmentService) {
+    public AppointmentController(AppointmentServiceImpl appointmentService,
+                                 EmailService emailService) {
         this.appointmentService = appointmentService;
+        this.emailService = emailService;
     }
 
     @RequestMapping(value = "/appointment", method = RequestMethod.POST)
-    public ResponseEntity<Response<Appointment>> saveAppointment(@RequestBody Appointment appointment) {
+    public ResponseEntity<Response<Appointment>> saveAppointment(@RequestBody Appointment appointment)
+            throws MessagingException {
         appointmentService.saveAppointment(appointment);
+        emailService.sendEmailToClient(appointment);
         return new ResponseEntity<>(new Response<>("Appointment added", "201", emptyList()),
                 HttpStatus.CREATED);
     }
