@@ -10,4 +10,5 @@ public interface EmployeeService {
     void saveEmployee(Employee employee);
     Optional<Employee> getEmployeeById(Long id);
     List<Employee> getAllEmployees();
+    String getEmployeeNameById(Long id);
 }

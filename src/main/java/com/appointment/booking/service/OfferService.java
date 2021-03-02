@@ -10,4 +10,6 @@ public interface OfferService {
     void saveOffer(Offer offer);
     Optional<Offer> getOfferById(Long id);
     List<Offer> getAllOffers();
+    String getOfferNameById(Long id);
+    Double getOfferPriceById(Long id);
 }

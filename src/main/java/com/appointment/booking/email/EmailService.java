@@ -1,9 +1,6 @@
 package com.appointment.booking.email;
 
 import com.appointment.booking.entity.Appointment;
-import com.appointment.booking.entity.Client;
-import com.appointment.booking.entity.Employee;
-import com.appointment.booking.entity.Offer;
 import com.appointment.booking.service.impl.ClientServiceImpl;
 import com.appointment.booking.service.impl.EmployeeServiceImpl;
 import com.appointment.booking.service.impl.OfferServiceImpl;
@@ -19,7 +16,6 @@ import javax.mail.internet.MimeMessage;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Optional;
 
 @Service
 public class EmailService {
@@ -78,34 +74,13 @@ public class EmailService {
         LocalDate date = appointment.getDate();
         LocalTime time = appointment.getTime();
         Timestamp creationDate = appointment.getCreationTime();
-        Optional<Client> client = clientService.getClientById(appointment.getClient_id());
-        Optional<Employee> employee = employeeService.getEmployeeById(appointment.getEmployee_id());
-        Optional<Offer> offer = offerService.getOfferById(appointment.getOffer_id());
+        String mailTo = clientService.getClientEmailById(appointment.getClient_id());
+        String employeeName = employeeService.getEmployeeNameById(appointment.getEmployee_id())
+                .replace(",", " ");
+        String offerName = offerService.getOfferNameById(appointment.getOffer_id());
+        Double offerPrice = offerService.getOfferPriceById(appointment.getOffer_id());
+        String placeName = placeService.getPlaceNameById(appointment.getPlace_id());
 
-        String mailTo = "";
-        if(client.isPresent()) {
-            mailTo = client.get().getEmail();
-        }
-
-        String employeeFirstName = "";
-        String employeeLastName = "";
-        if(employee.isPresent()) {
-            employeeFirstName = employee.get().getFirstname();
-            employeeLastName = employee.get().getLastname();
-        }
-        String employeeName = employeeFirstName + " " + employeeLastName;
-
-       String offerName = "";
-       Double offerPrice = 0.0;
-       if(offer.isPresent()) {
-           offerName = offer.get().getName();
-           offerPrice = offer.get().getPrice();
-       }
-
-       String placeName = "";
-       if(placeService.getPlaceById(appointment.getPlace_id()).isPresent()) {
-           placeName = placeService.getPlaceById(appointment.getPlace_id()).get().getName();
-       }
 
         return new Email.EmailBuilder(mailTo, placeName, employeeName, date, time)
                 .offer(offerName)

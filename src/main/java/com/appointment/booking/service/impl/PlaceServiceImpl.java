@@ -33,4 +33,9 @@ public class PlaceServiceImpl implements PlaceService {
     public List<Place> getAllPlaces() {
         return placeRepository.findAll();
     }
+
+    @Override
+    public String getPlaceNameById(Long id) {
+        return placeRepository.getPlaceNameById(id);
+    }
 }
