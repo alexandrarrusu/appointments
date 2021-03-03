@@ -1,0 +1,12 @@
+POST http://localhost:8080/booking/company
+Content-Type: application/json
+
+{"name" : "Place1", "address" : "Central"}
+
+###
+POST http://localhost:8080/booking/company
+Content-Type: application/json
+
+{"name" : "Place2", "address" : "Stauffacher"}
+
+###

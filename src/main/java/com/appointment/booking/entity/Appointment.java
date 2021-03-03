@@ -14,14 +14,14 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @JsonFormat(pattern = "dd.MM.yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
     @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private Long client_id;
     private Long employee_id;
     private Long offer_id;
-    private Long place_id;
+    private Long company_id;
     @CreationTimestamp
     private Timestamp creationTime;
 
@@ -53,7 +53,7 @@ public class Appointment {
         return offer_id;
     }
 
-    public Long getPlace_id() {
-        return place_id;
+    public Long getCompany_id() {
+        return company_id;
     }
 }

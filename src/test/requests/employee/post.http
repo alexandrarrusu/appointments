@@ -1,0 +1,22 @@
+POST http://localhost:8080/booking/employee
+Content-Type: application/json
+
+{"firstname": "Anna", "lastname" : "Stone", "company_id" : 1}
+
+###
+POST http://localhost:8080/booking/employee
+Content-Type: application/json
+
+{"firstname": "Ludmila", "lastname" : "Santana", "company_id" : 1}
+
+###
+POST http://localhost:8080/booking/employee
+Content-Type: application/json
+
+{"firstname": "Johanna", "lastname" : "Jackson", "company_id" : 2}
+
+###
+POST http://localhost:8080/booking/employee
+Content-Type: application/json
+
+{"firstname": "Mike", "lastname" : "Logan", "company_id" : 2}

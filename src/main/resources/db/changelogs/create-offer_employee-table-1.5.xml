@@ -4,16 +4,16 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
-    <changeSet author="Alexandra" id="changelog-1.2">
-        <createTable tableName="offer">
+    <changeSet author="Alexandra" id="changelog-1.5">
+        <createTable tableName="offer_employee">
             <column name="id" autoIncrement="true" type="bigint">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
             </column>
-            <column name="name" type="varchar(100)">
-                <constraints nullable="false" unique="false"/>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_employee_id" references="employee(id)"/>
             </column>
-            <column name="price" type="double">
-                <constraints nullable="false" unique="false"/>
+            <column name="offer_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="fk_offer_id" references="offer(id)"/>
             </column>
         </createTable>
     </changeSet>

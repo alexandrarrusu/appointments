@@ -1,0 +1,14 @@
+POST http://localhost:8080/booking/appointment
+Content-Type: application/json
+
+{
+  "date":"04/03/2021", "time":"10:00", "client_id": 1, "employee_id": 6, "offer_id": 1, "company_id": 1
+}
+
+###
+POST http://localhost:8080/booking/appointment
+Content-Type: application/json
+
+{
+  "date":"04/03/2021", "time":"15:00", "client_id": 2, "employee_id": 8, "offer_id": 6, "company_id": 2
+}

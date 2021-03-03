@@ -11,7 +11,7 @@ public class Email {
     private final LocalTime time;
     private final String employeeName;
     private final String offer;
-    private final String place;
+    private final String company;
     private final Double price;
     private final Timestamp creationDate;
 
@@ -21,7 +21,7 @@ public class Email {
         this.time = builder.time;
         this.employeeName = builder.employeeName;
         this.offer = builder.offer;
-        this.place = builder.place;
+        this.company = builder.company;
         this.price = builder.price;
         this.creationDate = builder.creationDate;
     }
@@ -46,8 +46,8 @@ public class Email {
         return offer;
     }
 
-    public String getPlace() {
-        return place;
+    public String getCompany() {
+        return company;
     }
 
     public Double getPrice() {
@@ -60,7 +60,7 @@ public class Email {
 
     public static class EmailBuilder {
         private final String mailTo;
-        private final String place;
+        private final String company;
         private final String employeeName;
         private final LocalDate date;
         private final LocalTime time;
@@ -68,9 +68,9 @@ public class Email {
         private Double price;
         private Timestamp creationDate;
 
-        public EmailBuilder(String mailTo, String place, String employeeName, LocalDate date, LocalTime time) {
+        public EmailBuilder(String mailTo, String company, String employeeName, LocalDate date, LocalTime time) {
             this.mailTo = mailTo;
-            this.place = place;
+            this.company = company;
             this.employeeName = employeeName;
             this.date = date;
             this.time = time;

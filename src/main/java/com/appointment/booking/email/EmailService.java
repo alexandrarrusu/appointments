@@ -4,7 +4,7 @@ import com.appointment.booking.entity.Appointment;
 import com.appointment.booking.service.impl.ClientServiceImpl;
 import com.appointment.booking.service.impl.EmployeeServiceImpl;
 import com.appointment.booking.service.impl.OfferServiceImpl;
-import com.appointment.booking.service.impl.PlaceServiceImpl;
+import com.appointment.booking.service.impl.CompanyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
@@ -27,16 +27,16 @@ public class EmailService {
     private final ClientServiceImpl clientService;
     private final EmployeeServiceImpl employeeService;
     private final OfferServiceImpl offerService;
-    private final PlaceServiceImpl placeService;
+    private final CompanyServiceImpl companyService;
 
     @Autowired
     public EmailService(EmailConfig emailConfig, ClientServiceImpl clientService, EmployeeServiceImpl employeeService,
-                        OfferServiceImpl offerService, PlaceServiceImpl placeService) {
+                        OfferServiceImpl offerService, CompanyServiceImpl companyService) {
         this.emailConfig = emailConfig;
         this.clientService = clientService;
         this.employeeService = employeeService;
         this.offerService = offerService;
-        this.placeService = placeService;
+        this.companyService = companyService;
     }
 
     public void sendEmailToClient(Appointment appointment) throws MessagingException {
@@ -56,7 +56,7 @@ public class EmailService {
     private MimeMessage getMailMessage(Email body) throws MessagingException {
         String mailBody = "<p>Service: " + body.getOffer() + "</p><br/>" +
                 "<p>Price: " + body.getPrice() + "<p><br/>" +
-                "<p>Location: " + body.getPlace() + "<p><br/>" +
+                "<p>Location: " + body.getCompany() + "<p><br/>" +
                 "<p>Date: " + body.getDate() + "</p><br/>" +
                 "<p>Time: " + body.getTime() + "</p><br/>" +
                 "<p>Employee: " + body.getEmployeeName() + "</p><br/>" +
@@ -79,10 +79,9 @@ public class EmailService {
                 .replace(",", " ");
         String offerName = offerService.getOfferNameById(appointment.getOffer_id());
         Double offerPrice = offerService.getOfferPriceById(appointment.getOffer_id());
-        String placeName = placeService.getPlaceNameById(appointment.getPlace_id());
+        String companyName = companyService.getCompanyNameById(appointment.getCompany_id());
 
-
-        return new Email.EmailBuilder(mailTo, placeName, employeeName, date, time)
+        return new Email.EmailBuilder(mailTo, companyName, employeeName, date, time)
                 .offer(offerName)
                 .price(offerPrice)
                 .creationDate(creationDate)

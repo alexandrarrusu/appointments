@@ -1,0 +1,12 @@
+POST http://localhost:8080/booking/client
+Content-Type: application/json
+
+{ "firstname" : "Joe", "lastname": "Fontana", "email" : "joe.fontana@something.com", "phone" : "0789224765" }
+
+###
+POST http://localhost:8080/booking/client
+Content-Type: application/json
+
+{ "firstname" : "Jamie", "lastname": "Ross", "email" : "jamie.ross@something.com", "phone" : "0765889900" }
+
+###

@@ -1,0 +1,46 @@
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  8, "offer_id" : 6 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  6, "offer_id" : 1 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  6, "offer_id" : 2 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  7, "offer_id" : 3 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  7, "offer_id" : 4 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  7, "offer_id" : 5 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  9, "offer_id" : 1 }
+
+###
+POST http://localhost:8080/booking/offer_employee
+Content-Type: application/json
+
+{"employee_id" :  9, "offer_id" : 2 }

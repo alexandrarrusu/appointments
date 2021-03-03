@@ -6,28 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Employee {
+public class Offer_Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
-    private Long company_id;
+    private Long employee_id;
+    private Long offer_id;
 
     public Long getId() {
         return id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public Long getEmployee_id() {
+        return employee_id;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public Long getCompany_id() {
-        return company_id;
+    public Long getOffer_id() {
+        return offer_id;
     }
 }

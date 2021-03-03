@@ -1,0 +1,34 @@
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Shellac Manicure", "price" : "50.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Remove Shellac", "price" : "20.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Women haircut long", "price" : "100.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Women haircut medium", "price" : "75.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Women haircut short", "price" : "55.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Men haircut", "price" : "45.00"}

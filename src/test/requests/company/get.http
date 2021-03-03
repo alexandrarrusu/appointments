@@ -1,0 +1,8 @@
+GET http://localhost:8080/booking/company/1
+Accept: application/json
+
+###
+GET http://localhost:8080/booking/company
+Accept: application/json
+
+###
