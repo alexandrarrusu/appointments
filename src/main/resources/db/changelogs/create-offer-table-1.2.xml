@@ -12,7 +12,7 @@
             <column name="name" type="varchar(100)">
                 <constraints nullable="false" unique="false"/>
             </column>
-            <column name="price" type="double">
+            <column name="price" type="decimal">
                 <constraints nullable="false" unique="false"/>
             </column>
         </createTable>

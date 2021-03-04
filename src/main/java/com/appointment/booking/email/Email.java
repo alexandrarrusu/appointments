@@ -1,18 +1,21 @@
 package com.appointment.booking.email;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Email {
 
     private final String mailTo;
-    private final LocalDate date;
+    private final String date;
     private final LocalTime time;
     private final String employeeName;
     private final String offer;
     private final String company;
-    private final Double price;
+    private final BigDecimal price;
+    @JsonFormat(pattern="HH:mm:ss")
     private final Timestamp creationDate;
 
     private Email(EmailBuilder builder) {
@@ -30,7 +33,7 @@ public class Email {
         return mailTo;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -50,7 +53,7 @@ public class Email {
         return company;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -62,13 +65,13 @@ public class Email {
         private final String mailTo;
         private final String company;
         private final String employeeName;
-        private final LocalDate date;
+        private final String date;
         private final LocalTime time;
         private String offer;
-        private Double price;
+        private BigDecimal price;
         private Timestamp creationDate;
 
-        public EmailBuilder(String mailTo, String company, String employeeName, LocalDate date, LocalTime time) {
+        public EmailBuilder(String mailTo, String company, String employeeName, String date, LocalTime time) {
             this.mailTo = mailTo;
             this.company = company;
             this.employeeName = employeeName;
@@ -81,7 +84,7 @@ public class Email {
             return this;
         }
 
-        public EmailBuilder price(Double price) {
+        public EmailBuilder price(BigDecimal price) {
             this.price = price;
             return this;
         }
@@ -92,8 +95,7 @@ public class Email {
         }
 
         public Email build() {
-            Email email =  new Email(this);
-            return email;
+            return new Email(this);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.appointment.booking.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,7 +41,7 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public Double getOfferPriceById(Long id) {
+    public BigDecimal getOfferPriceById(Long id) {
         return offerRepository.getOfferPriceById(id);
     }
 }

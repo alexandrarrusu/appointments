@@ -2,6 +2,7 @@ package com.appointment.booking.service;
 
 import com.appointment.booking.entity.Offer;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,5 +12,5 @@ public interface OfferService {
     Optional<Offer> getOfferById(Long id);
     List<Offer> getAllOffers();
     String getOfferNameById(Long id);
-    Double getOfferPriceById(Long id);
+    BigDecimal getOfferPriceById(Long id);
 }

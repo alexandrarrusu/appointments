@@ -13,9 +13,12 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 @Service
 public class EmailService {
@@ -72,16 +75,17 @@ public class EmailService {
 
     private Email getEmailBodyDetails(Appointment appointment) {
         LocalDate date = appointment.getDate();
+        String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
         LocalTime time = appointment.getTime();
         Timestamp creationDate = appointment.getCreationTime();
         String mailTo = clientService.getClientEmailById(appointment.getClient_id());
         String employeeName = employeeService.getEmployeeNameById(appointment.getEmployee_id())
                 .replace(",", " ");
         String offerName = offerService.getOfferNameById(appointment.getOffer_id());
-        Double offerPrice = offerService.getOfferPriceById(appointment.getOffer_id());
+        BigDecimal offerPrice = offerService.getOfferPriceById(appointment.getOffer_id());
         String companyName = companyService.getCompanyNameById(appointment.getCompany_id());
 
-        return new Email.EmailBuilder(mailTo, companyName, employeeName, date, time)
+        return new Email.EmailBuilder(mailTo, companyName, employeeName, formattedDate, time)
                 .offer(offerName)
                 .price(offerPrice)
                 .creationDate(creationDate)

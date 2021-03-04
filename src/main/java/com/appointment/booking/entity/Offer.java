@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
 
 @Entity
 public class Offer {
@@ -12,7 +13,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Double price;
+    private BigDecimal price;
 
     public Long getId() {
         return id;
@@ -22,7 +23,7 @@ public class Offer {
         return name;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
