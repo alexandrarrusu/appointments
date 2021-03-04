@@ -53,7 +53,18 @@ public class AppointmentController {
     }
 
     @RequestMapping(value="/appointment", method = RequestMethod.GET)
-    public ResponseEntity<Response<Appointment>> getAllAppointments() {
+    public ResponseEntity<Response<Appointment>> getAllAppointments(
+            @RequestParam(value = "clientId", required = false) Long clientId,
+            @RequestParam(value = "employeeId", required = false) Long employeeId) {
+        if(clientId != null) {
+            return new ResponseEntity<>(new Response<>("Appointments found for client with id = " + clientId,
+                "200", appointmentService.getAppointmentsByClientId(clientId)), HttpStatus.OK);
+        }
+        if(employeeId != null) {
+            return new ResponseEntity<>(new Response<>("Appointments found for employee with id = " +
+                    employeeId, "200", appointmentService.getAppointmentsByEmployeeId(employeeId)),
+                    HttpStatus.OK);
+        }
         return new ResponseEntity<>(new Response<>("Appointments found", "200",
                 appointmentService.getAllAppointments()), HttpStatus.OK);
     }
