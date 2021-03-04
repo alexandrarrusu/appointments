@@ -1,0 +1,14 @@
+GET http://localhost:8080/booking/offer_employee/1
+Accept: application/json
+
+###
+GET http://localhost:8080/booking/offer_employee/2
+Accept: application/json
+
+###
+GET http://localhost:8080/booking/offer_employee/3
+Accept: application/json
+
+###
+GET http://localhost:8080/booking/offer_employee/4
+Accept: application/json
