@@ -52,6 +52,26 @@ public class AppointmentController {
                 HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/appointment/{id}", method = RequestMethod.PATCH)
+    public ResponseEntity<Response<Appointment>> updateAppointment(@PathVariable Long id,
+                                                                   @RequestBody Appointment updatedAppointment) {
+        Optional<Appointment> initialAppointment = appointmentService.getAppointmentById(id);
+        Appointment appointment = new Appointment();
+        if(initialAppointment.isPresent()) {
+            appointment = initialAppointment.get();
+        }
+        appointment.setDate(updatedAppointment.getDate());
+        appointment.setTime(updatedAppointment.getTime());
+        appointment.setOffer_id(updatedAppointment.getOffer_id());
+        appointment.setClient_id(updatedAppointment.getClient_id());
+        appointment.setEmployee_id(updatedAppointment.getEmployee_id());
+        appointment.setCompany_id(updatedAppointment.getCompany_id());
+
+        appointmentService.saveAppointment(appointment);
+        return new ResponseEntity<>(new Response<>("Appointment updated", "201", emptyList()),
+                HttpStatus.CREATED);
+    }
+
     @RequestMapping(value="/appointment", method = RequestMethod.GET)
     public ResponseEntity<Response<Appointment>> getAllAppointments(
             @RequestParam(value = "clientId", required = false) Long clientId,

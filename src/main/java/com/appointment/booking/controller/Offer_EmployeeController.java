@@ -42,7 +42,7 @@ public class Offer_EmployeeController {
         for(Long l : offersId) {
             offers.add(offerService.getOfferById(l));
         }
-        return new ResponseEntity<>(new Response<>("Offers found", "200",
+        return new ResponseEntity<>(new Response<>("Offers found for employee with id = " + id, "200",
                offers.stream().map(Optional::get).collect(Collectors.toList())), HttpStatus.OK);
     }
 }

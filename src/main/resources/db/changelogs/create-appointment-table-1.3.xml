@@ -30,6 +30,9 @@
             <column name="creation_time" type="timestamp" valueDate="${now}">
                 <constraints nullable="false" unique="false" />
             </column>
+            <column name="update_time" type="timestamp" valueDate="${now}">
+                <constraints nullable="false" unique="false" />
+            </column>
         </createTable>
     </changeSet>
 </databaseChangeLog>
