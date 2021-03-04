@@ -77,7 +77,8 @@ public class EmailService {
         LocalDate date = appointment.getDate();
         String formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
         LocalTime time = appointment.getTime();
-        Timestamp creationDate = appointment.getCreationTime();
+        Timestamp creationTime = appointment.getCreationTime();
+        Timestamp updateTime = appointment.getUpdateTime();
         String mailTo = clientService.getClientEmailById(appointment.getClient_id());
         String employeeName = employeeService.getEmployeeNameById(appointment.getEmployee_id())
                 .replace(",", " ");
@@ -88,7 +89,8 @@ public class EmailService {
         return new Email.EmailBuilder(mailTo, companyName, employeeName, formattedDate, time)
                 .offer(offerName)
                 .price(offerPrice)
-                .creationDate(creationDate)
+                .creationTime(creationTime)
+                .updateTime(updateTime)
                 .build();
     }
 }

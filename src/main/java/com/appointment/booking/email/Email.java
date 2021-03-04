@@ -1,7 +1,5 @@
 package com.appointment.booking.email;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalTime;
@@ -15,8 +13,8 @@ public class Email {
     private final String offer;
     private final String company;
     private final BigDecimal price;
-    @JsonFormat(pattern="HH:mm:ss")
-    private final Timestamp creationDate;
+    private final Timestamp creationTime;
+    private final Timestamp updateTime;
 
     private Email(EmailBuilder builder) {
         this.mailTo = builder.mailTo;
@@ -26,7 +24,8 @@ public class Email {
         this.offer = builder.offer;
         this.company = builder.company;
         this.price = builder.price;
-        this.creationDate = builder.creationDate;
+        this.creationTime = builder.creationTime;
+        this.updateTime = builder.updateTime;
     }
 
     public String getMailTo() {
@@ -58,7 +57,11 @@ public class Email {
     }
 
     public Timestamp getCreationDate() {
-        return creationDate;
+        return creationTime;
+    }
+
+    public Timestamp getUpdateDate() {
+        return updateTime;
     }
 
     public static class EmailBuilder {
@@ -69,7 +72,8 @@ public class Email {
         private final LocalTime time;
         private String offer;
         private BigDecimal price;
-        private Timestamp creationDate;
+        private Timestamp creationTime;
+        private Timestamp updateTime;
 
         public EmailBuilder(String mailTo, String company, String employeeName, String date, LocalTime time) {
             this.mailTo = mailTo;
@@ -89,8 +93,13 @@ public class Email {
             return this;
         }
 
-        public EmailBuilder creationDate(Timestamp creationDate) {
-            this.creationDate = creationDate;
+        public EmailBuilder creationTime(Timestamp creationTime) {
+            this.creationTime = creationTime;
+            return this;
+        }
+
+        public EmailBuilder updateTime(Timestamp updateTime) {
+            this.updateTime = updateTime;
             return this;
         }
 

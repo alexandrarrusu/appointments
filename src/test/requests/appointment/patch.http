@@ -4,3 +4,11 @@ Content-Type: application/json
 {
   "date":"06/03/2021", "time":"12:00", "client_id": 1, "employee_id": 1, "offer_id": 1, "company_id": 1
 }
+
+###
+PATCH http://localhost:8080/booking/appointment/4
+Content-Type: application/json
+
+{
+  "date":"18/03/2021", "time":"13:00", "client_id": 1, "employee_id": 1, "offer_id": 2, "company_id": 1
+}

@@ -54,7 +54,8 @@ public class AppointmentController {
 
     @RequestMapping(value = "/appointment/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Response<Appointment>> updateAppointment(@PathVariable Long id,
-                                                                   @RequestBody Appointment updatedAppointment) {
+                                                                   @RequestBody Appointment updatedAppointment)
+            throws MessagingException {
         Optional<Appointment> initialAppointment = appointmentService.getAppointmentById(id);
         Appointment appointment = new Appointment();
         if(initialAppointment.isPresent()) {
@@ -68,6 +69,7 @@ public class AppointmentController {
         appointment.setCompany_id(updatedAppointment.getCompany_id());
 
         appointmentService.saveAppointment(appointment);
+        emailService.sendEmailToClient(appointment);
         return new ResponseEntity<>(new Response<>("Appointment updated", "201", emptyList()),
                 HttpStatus.CREATED);
     }
