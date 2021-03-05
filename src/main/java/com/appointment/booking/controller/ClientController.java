@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
-
 @RestController
 public class ClientController {
 
@@ -27,8 +25,9 @@ public class ClientController {
 
     @RequestMapping(value = "/client", method = RequestMethod.POST)
     public ResponseEntity<Response<Client>> saveClient(@RequestBody Client client) {
-        clientService.saveClient(client);
-        return new ResponseEntity<>(new Response<>("Client added", "201", emptyList()),
+        List<Client> list = new ArrayList<>();
+        list.add(clientService.saveClient(client));
+        return new ResponseEntity<>(new Response<>("Client added", "201", list),
                 HttpStatus.CREATED);
     }
 
