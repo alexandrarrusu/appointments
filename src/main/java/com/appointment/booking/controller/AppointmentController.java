@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +35,11 @@ public class AppointmentController {
     @RequestMapping(value = "/appointment", method = RequestMethod.POST)
     public ResponseEntity<Response<Appointment>> saveAppointment(@RequestBody Appointment appointment)
             throws MessagingException {
-        appointmentService.saveAppointment(appointment);
+        Appointment saveAppointment = appointmentService.saveAppointment(appointment);
+        List<Appointment> list = new ArrayList<>();
+        list.add(saveAppointment);
         emailService.sendEmailToClient(appointment);
-        return new ResponseEntity<>(new Response<>("Appointment added", "201", emptyList()),
+        return new ResponseEntity<>(new Response<>("Appointment added", "201", list),
                 HttpStatus.CREATED);
     }
 
@@ -57,17 +61,21 @@ public class AppointmentController {
                                                                    @RequestBody Appointment updatedAppointment)
             throws MessagingException {
         Optional<Appointment> initialAppointment = appointmentService.getAppointmentById(id);
-        Appointment appointment = new Appointment();
+        Appointment appointment = null;
         if(initialAppointment.isPresent()) {
-            appointment = initialAppointment.get();
+            Long appointmentId = initialAppointment.get().getId();
+            Timestamp creationTime = initialAppointment.get().getCreationTime();
+            appointment = new Appointment.AppointmentBuilder()
+                    .id(appointmentId)
+                    .date(updatedAppointment.getDate())
+                    .time(updatedAppointment.getTime())
+                    .offer_id(updatedAppointment.getOffer_id())
+                    .client_id(updatedAppointment.getClient_id())
+                    .employee_id(updatedAppointment.getEmployee_id())
+                    .company_id(updatedAppointment.getCompany_id())
+                    .creationTime(creationTime)
+                    .build();
         }
-        appointment.setDate(updatedAppointment.getDate());
-        appointment.setTime(updatedAppointment.getTime());
-        appointment.setOffer_id(updatedAppointment.getOffer_id());
-        appointment.setClient_id(updatedAppointment.getClient_id());
-        appointment.setEmployee_id(updatedAppointment.getEmployee_id());
-        appointment.setCompany_id(updatedAppointment.getCompany_id());
-
         appointmentService.saveAppointment(appointment);
         emailService.sendEmailToClient(appointment);
         return new ResponseEntity<>(new Response<>("Appointment updated", "201", emptyList()),

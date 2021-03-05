@@ -26,5 +26,5 @@ POST http://localhost:8080/booking/appointment
 Content-Type: application/json
 
 {
-  "date":"09/03/2021", "time":"10:00", "client_id": 1, "employee_id": 1, "offer_id": 2, "company_id": 1
+  "date":"06/03/2021", "time":"11:00", "client_id": 2, "employee_id": 2, "offer_id": 4, "company_id": 1
 }

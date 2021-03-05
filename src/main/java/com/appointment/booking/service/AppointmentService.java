@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AppointmentService {
 
-    void saveAppointment(Appointment appointment);
+    Appointment saveAppointment(Appointment appointment);
     Optional<Appointment> getAppointmentById(Long id);
     List<Appointment> getAllAppointments();
     List<Appointment> getAppointmentsByClientId(Long id);
