@@ -15,6 +15,14 @@ public class Offer {
     private String name;
     private BigDecimal price;
 
+    public Offer() {}
+
+    public Offer(OfferBuilder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
+        this.price = builder.price;
+    }
+
     public Long getId() {
         return id;
     }
@@ -25,6 +33,31 @@ public class Offer {
 
     public BigDecimal getPrice() {
         return price;
+    }
+
+    public static class OfferBuilder {
+        private Long id;
+        private String name;
+        private BigDecimal price;
+
+        public OfferBuilder() {}
+
+        public OfferBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public OfferBuilder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public OfferBuilder price(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+
+        public Offer build() {return new Offer(this);}
     }
 
 }

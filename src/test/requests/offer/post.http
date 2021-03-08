@@ -32,3 +32,9 @@ POST http://localhost:8080/booking/offer
 Content-Type: application/json
 
 {"name" : "Men haircut", "price" : "45.00"}
+
+###
+POST http://localhost:8080/booking/offer
+Content-Type: application/json
+
+{"name" : "Pedicure", "price" : "60.00"}

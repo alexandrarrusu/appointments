@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface OfferService {
 
-    void saveOffer(Offer offer);
+    Offer saveOffer(Offer offer);
     Optional<Offer> getOfferById(Long id);
     List<Offer> getAllOffers();
     String getOfferNameById(Long id);

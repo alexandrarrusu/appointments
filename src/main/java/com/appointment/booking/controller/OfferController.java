@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
-
 @RestController
 public class OfferController {
 
@@ -27,8 +25,9 @@ public class OfferController {
 
     @RequestMapping(value = "/offer", method = RequestMethod.POST)
     public ResponseEntity<Response<Offer>> saveOffer(@RequestBody Offer offer) {
-        offerService.saveOffer(offer);
-        return new ResponseEntity<>(new Response<>("Offer added", "201", emptyList()),
+        List<Offer> list = new ArrayList<>();
+        list.add(offerService.saveOffer(offer));
+        return new ResponseEntity<>(new Response<>("Offer added", "201", list),
                 HttpStatus.CREATED);
     }
 

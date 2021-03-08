@@ -21,8 +21,8 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void saveOffer(Offer offer) {
-        offerRepository.save(offer);
+    public Offer saveOffer(Offer offer) {
+        return offerRepository.save(offer);
     }
 
     @Override
