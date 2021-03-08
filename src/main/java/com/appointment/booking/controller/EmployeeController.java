@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
-
 @RestController
 public class EmployeeController {
 
@@ -28,8 +26,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/employee", method = RequestMethod.POST)
     public ResponseEntity<Response<Employee>> saveEmployee(@RequestBody Employee employee) {
-        employeeService.saveEmployee(employee);
-        return new ResponseEntity<>(new Response<>("Employee added", "201", emptyList()),
+        List<Employee> list = new ArrayList<>();
+        list.add(employeeService.saveEmployee(employee));
+        return new ResponseEntity<>(new Response<>("Employee added", "201", list),
                 HttpStatus.CREATED);
     }
 

@@ -15,6 +15,15 @@ public class Employee {
     private String lastname;
     private Long company_id;
 
+    public Employee() {}
+
+    public Employee(EmployeeBuilder builder) {
+        this.id = builder.id;
+        this.firstname = builder.firstname;
+        this.lastname = builder.lastname;
+        this.company_id = builder.company_id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -29,5 +38,36 @@ public class Employee {
 
     public Long getCompany_id() {
         return company_id;
+    }
+
+    public static class EmployeeBuilder {
+        private Long id;
+        private String firstname;
+        private String lastname;
+        private Long company_id;
+
+        public EmployeeBuilder() {}
+
+        public EmployeeBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public EmployeeBuilder firstname(String firstname) {
+            this.firstname = firstname;
+            return this;
+        }
+
+        public EmployeeBuilder lastname(String lastname) {
+            this.lastname = lastname;
+            return this;
+        }
+
+        public EmployeeBuilder company_id(Long company_id) {
+            this.company_id = company_id;
+            return this;
+        }
+
+        public Employee build() {return new Employee(this);}
     }
 }

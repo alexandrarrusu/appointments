@@ -26,7 +26,6 @@ public class CompanyServiceTest {
     private CompanyServiceImpl companyService;
 
     private Company company;
-    private List<Company> list = new ArrayList<>();
 
     @Before
     public void setup() {
@@ -42,8 +41,9 @@ public class CompanyServiceTest {
 
     @Test
     public void getAllCompanies() {
-        list.add(company);
         Company secondCompany = new Company.CompanyBuilder().id(2L).name("Company2").address("Central").build();
+        List<Company> list = new ArrayList<>();
+        list.add(company);
         list.add(secondCompany);
         when(companyRepository.findAll()).thenReturn(list);
         List<Company> companies = companyService.getAllCompanies();
