@@ -10,3 +10,7 @@ Content-Type: application/json
 {"name" : "Place2", "address" : "Stauffacher"}
 
 ###
+POST http://localhost:8080/booking/company
+Content-Type: application/json
+
+{"name" : "Place3", "address" : "Palas"}

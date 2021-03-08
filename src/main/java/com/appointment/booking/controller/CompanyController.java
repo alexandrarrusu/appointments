@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Collections.emptyList;
-
 @RestController
 public class CompanyController {
 
@@ -27,8 +25,9 @@ public class CompanyController {
 
     @RequestMapping(value = "/company", method = RequestMethod.POST)
     public ResponseEntity<Response<Company>> saveCompany(@RequestBody Company company) {
-        companyService.saveCompany(company);
-        return new ResponseEntity<>(new Response<>("Company added", "201", emptyList()),
+        List<Company> list = new ArrayList<>();
+        list.add(companyService.saveCompany(company));
+        return new ResponseEntity<>(new Response<>("Company added", "201", list),
                 HttpStatus.CREATED);
     }
 

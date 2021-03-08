@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface CompanyService {
 
-    void saveCompany(Company company);
+    Company saveCompany(Company company);
     Optional<Company> getCompanyById(Long id);
     List<Company> getAllCompanies();
     String getCompanyNameById(Long id);
