@@ -47,30 +47,27 @@ public class AppointmentServiceTest {
     }
 
     @Test
-    public void saveAppointment() throws ParseException {
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = dateFormat.parse("05/03/2021");
-        Timestamp timeStampDate = new Timestamp(date.getTime());
+    public void saveAppointment() {
         when(appointmentRepository.save(appointment)).thenReturn(appointment);
         Appointment a = appointmentService.saveAppointment(appointment);
-        assertEquals(Long.valueOf(1L), a.getId());
-        assertEquals(Long.valueOf(2L), a.getClient_id());
-        assertEquals(Long.valueOf(3L), a.getEmployee_id());
-        assertEquals(Long.valueOf(1L), a.getOffer_id());
-        assertEquals(Long.valueOf(1L), a.getCompany_id());
-        assertEquals(LocalDate.of(2021, 3, 10), a.getDate());
-        assertEquals(LocalTime.of(10, 0), a.getTime());
-        assertEquals(timeStampDate, a.getCreationTime());
-        assertEquals(timeStampDate, a.getUpdateTime());
+        assertEquals(appointment.getId(), a.getId());
+        assertEquals(appointment.getClient_id(), a.getClient_id());
+        assertEquals(appointment.getEmployee_id(), a.getEmployee_id());
+        assertEquals(appointment.getOffer_id(), a.getOffer_id());
+        assertEquals(appointment.getCompany_id(), a.getCompany_id());
+        assertEquals(appointment.getDate(), a.getDate());
+        assertEquals(appointment.getTime(), a.getTime());
+        assertEquals(appointment.getCreationTime(), a.getCreationTime());
+        assertEquals(appointment.getUpdateTime(), a.getUpdateTime());
     }
 
     @Test
     public void getAppointmentById() {
-        when(appointmentRepository.findById(1L)).thenReturn(Optional.of(appointment));
-        Optional<Appointment> a = appointmentService.getAppointmentById(1L);
+        when(appointmentRepository.findById(appointment.getId())).thenReturn(Optional.of(appointment));
+        Optional<Appointment> a = appointmentService.getAppointmentById(appointment.getId());
         Appointment app = a.get();
-        assertEquals(Long.valueOf(1L),app.getId());
-        assertEquals(Long.valueOf(2L), app.getClient_id());
+        assertEquals(appointment.getId(),app.getId());
+        assertEquals(appointment.getClient_id(), app.getClient_id());
     }
 
     @Test
@@ -85,7 +82,7 @@ public class AppointmentServiceTest {
         list.add(secondAppointment);
         when(appointmentRepository.findAll()).thenReturn(list);
         List<Appointment> savedAppointments = appointmentService.getAllAppointments();
-        assertEquals(2, savedAppointments.size());
+        assertEquals(list.size(), savedAppointments.size());
     }
 
     @Test
@@ -107,6 +104,6 @@ public class AppointmentServiceTest {
         list.add(secondAppointment);
         when(appointmentRepository.getAppointmentsByEmployeeId(3L)).thenReturn(list);
         List<Appointment> employeeAppointments = appointmentService.getAppointmentsByEmployeeId(3L);
-        assertEquals(2, employeeAppointments.size());
+        assertEquals(list.size(), employeeAppointments.size());
     }
 }

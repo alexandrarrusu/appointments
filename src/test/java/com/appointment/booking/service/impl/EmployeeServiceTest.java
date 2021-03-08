@@ -36,21 +36,21 @@ public class EmployeeServiceTest {
     public void saveEmployee() {
         when(employeeRepository.save(employee)).thenReturn(employee);
         Employee e = employeeService.saveEmployee(employee);
-        assertEquals(Long.valueOf(1L), e.getId());
-        assertEquals("Anna", e.getFirstname());
-        assertEquals("Stone", e.getLastname());
-        assertEquals(Long.valueOf(2L), e.getCompany_id());
+        assertEquals(employee.getId(), e.getId());
+        assertEquals(employee.getFirstname(), e.getFirstname());
+        assertEquals(employee.getLastname(), e.getLastname());
+        assertEquals(employee.getCompany_id(), e.getCompany_id());
     }
 
     @Test
     public void getEmployeeById(){
-        when(employeeRepository.findById(1L)).thenReturn(Optional.of(employee));
-        Optional<Employee> o = employeeService.getEmployeeById(1L);
+        when(employeeRepository.findById(employee.getId())).thenReturn(Optional.of(employee));
+        Optional<Employee> o = employeeService.getEmployeeById(employee.getId());
         Employee e = o.get();
-        assertEquals(Long.valueOf(1L), e.getId());
-        assertEquals("Anna", e.getFirstname());
-        assertEquals("Stone", e.getLastname());
-        assertEquals(Long.valueOf(2L), e.getCompany_id());
+        assertEquals(employee.getId(), e.getId());
+        assertEquals(employee.getFirstname(), e.getFirstname());
+        assertEquals(employee.getLastname(), e.getLastname());
+        assertEquals(employee.getCompany_id(), e.getCompany_id());
     }
 
     @Test
@@ -62,13 +62,14 @@ public class EmployeeServiceTest {
         list.add(secondEmployee);
         when(employeeRepository.findAll()).thenReturn(list);
         List<Employee> employees = employeeService.getAllEmployees();
-        assertEquals(2, employees.size());
+        assertEquals(list.size(), employees.size());
     }
 
     @Test
     public void getEmployeeNameById() {
-        when(employeeRepository.getEmployeeNameById(1L)).thenReturn("Anna,Stone");
-        String e = employeeService.getEmployeeNameById(1L);
-        assertEquals("Anna,Stone", e);
+        String name = "Anna,Stone";
+        when(employeeRepository.getEmployeeNameById(employee.getId())).thenReturn(name);
+        String e = employeeService.getEmployeeNameById(employee.getId());
+        assertEquals(name, e);
     }
 }

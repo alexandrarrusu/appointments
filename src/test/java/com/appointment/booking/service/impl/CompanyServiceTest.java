@@ -36,7 +36,7 @@ public class CompanyServiceTest {
     public void saveCompany() {
         when(companyRepository.save(company)).thenReturn(company);
         Company c = companyService.saveCompany(company);
-        assertEquals(Long.valueOf(1L), c.getId());
+        assertEquals(company.getId(), c.getId());
     }
 
     @Test
@@ -47,23 +47,23 @@ public class CompanyServiceTest {
         list.add(secondCompany);
         when(companyRepository.findAll()).thenReturn(list);
         List<Company> companies = companyService.getAllCompanies();
-        assertEquals(2, companies.size());
+        assertEquals(list.size(), companies.size());
     }
 
     @Test
     public void getCompanyById() {
-        when(companyRepository.findById(1L)).thenReturn(Optional.of(company));
-        Optional<Company> c = companyService.getCompanyById(1L);
+        when(companyRepository.findById(company.getId())).thenReturn(Optional.of(company));
+        Optional<Company> c = companyService.getCompanyById(company.getId());
         Company com = c.get();
-        assertEquals(Long.valueOf(1L), com.getId());
-        assertEquals("Company1", com.getName());
-        assertEquals("Stauffacher", com.getAddress());
+        assertEquals(company.getId(), com.getId());
+        assertEquals(company.getName(), com.getName());
+        assertEquals(company.getAddress(), com.getAddress());
     }
 
     @Test
     public void getCompanyNameById() {
-        when(companyRepository.getCompanyNameById(1L)).thenReturn("Company1");
-        String companyName = companyService.getCompanyNameById(1L);
-        assertEquals("Company1", companyName);
+        when(companyRepository.getCompanyNameById(company.getId())).thenReturn(company.getName());
+        String companyName = companyService.getCompanyNameById(company.getId());
+        assertEquals(company.getName(), companyName);
     }
 }

@@ -38,22 +38,22 @@ public class ClientServiceTest {
     public void saveClient() {
         when(clientRepository.save(client)).thenReturn(client);
         Client c = clientService.saveClient(client);
-        assertEquals(Long.valueOf(1L), c.getId());
-        assertEquals("Joe", c.getFirstname());
-        assertEquals("Santana", c.getLastname());
-        assertEquals("joe.santana@something.com", c.getEmail());
-        assertEquals("0785342678", c.getPhone());
+        assertEquals(client.getId(), c.getId());
+        assertEquals(client.getFirstname(), c.getFirstname());
+        assertEquals(client.getLastname(), c.getLastname());
+        assertEquals(client.getEmail(), c.getEmail());
+        assertEquals(client.getPhone(), c.getPhone());
     }
 
     @Test
     public void getClientById() {
-        when(clientRepository.findById(1L)).thenReturn(Optional.of(client));
-        Optional<Client> c = clientService.getClientById(1L);
+        when(clientRepository.findById(client.getId())).thenReturn(Optional.of(client));
+        Optional<Client> c = clientService.getClientById(client.getId());
         Client customer = c.get();
-        assertEquals("Joe", customer.getFirstname());
-        assertEquals("Santana", customer.getLastname());
-        assertEquals("joe.santana@something.com", customer.getEmail());
-        assertEquals("0785342678", customer.getPhone());
+        assertEquals(client.getFirstname(), customer.getFirstname());
+        assertEquals(client.getLastname(), customer.getLastname());
+        assertEquals(client.getEmail(), customer.getEmail());
+        assertEquals(client.getPhone(), customer.getPhone());
     }
 
     @Test
@@ -66,12 +66,12 @@ public class ClientServiceTest {
         list.add(client);
         when(clientRepository.findAll()).thenReturn(list);
         List<Client> clients = clientService.getAllClients();
-        assertEquals(2, clients.size());
+        assertEquals(list.size(), clients.size());
     }
 
     @Test
     public void getClientEmailById() {
-        when(clientRepository.getClientEmailById(1L)).thenReturn("joe.santana@something.com");
-        assertEquals("joe.santana@something.com", clientService.getClientEmailById(1L));
+        when(clientRepository.getClientEmailById(client.getId())).thenReturn(client.getEmail());
+        assertEquals(client.getEmail(), clientService.getClientEmailById(client.getId()));
     }
 }
