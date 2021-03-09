@@ -14,8 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.emptyList;
-
 @RestController
 public class Offer_EmployeeController {
 
@@ -30,8 +28,9 @@ public class Offer_EmployeeController {
 
     @RequestMapping(value = "/offer_employee", method = RequestMethod.POST)
     public ResponseEntity<Response<Offer_Employee>> saveOffer_Employee(@RequestBody Offer_Employee offer_employee) {
-        offer_employeeService.saveOffer_Employee(offer_employee);
-        return new ResponseEntity<>(new Response<>("Offer per employee added", "201", emptyList()),
+        List<Offer_Employee> list = new ArrayList<>();
+        list.add( offer_employeeService.saveOffer_Employee(offer_employee));
+        return new ResponseEntity<>(new Response<>("Offer per employee added", "201", list),
                 HttpStatus.CREATED);
     }
 

@@ -17,8 +17,8 @@ public class Offer_EmployeeServiceImpl implements Offer_EmployeeService {
     }
 
     @Override
-    public void saveOffer_Employee(Offer_Employee offer_employee) {
-        offer_employeeRepository.save(offer_employee);
+    public Offer_Employee saveOffer_Employee(Offer_Employee offer_employee) {
+        return offer_employeeRepository.save(offer_employee);
     }
 
     @Override

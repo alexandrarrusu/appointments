@@ -17,7 +17,7 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(EmployeeBuilder builder) {
+    private Employee(EmployeeBuilder builder) {
         this.id = builder.id;
         this.firstname = builder.firstname;
         this.lastname = builder.lastname;

@@ -17,7 +17,7 @@ public class Offer {
 
     public Offer() {}
 
-    public Offer(OfferBuilder builder) {
+    private Offer(OfferBuilder builder) {
         this.id = builder.id;
         this.name = builder.name;
         this.price = builder.price;
