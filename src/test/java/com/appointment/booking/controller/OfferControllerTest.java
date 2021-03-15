@@ -1,0 +1,101 @@
+package com.appointment.booking.controller;
+
+import com.appointment.booking.DatabaseConfig;
+import com.appointment.booking.response.Response;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import static junit.framework.TestCase.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@Import(DatabaseConfig.class)
+@SpringBootTest
+public class OfferControllerTest {
+
+    private MockMvc mockMvc;
+
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Before
+    public void setup() {
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+
+    @Test
+    public void saveOffer() throws Exception {
+        ResultActions result = mockMvc.perform(post("/offer")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\" : \"2\", \"name\" : \"Manicure\", \"price\" : \"55.00\" }")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        MvcResult response = result.andReturn();
+        String contentAsString = response.getResponse().getContentAsString();
+        Response<?> o = objectMapper.readValue(contentAsString, Response.class);
+        assertEquals("201", o.getCode());
+        assertEquals("Offer added", o.getMessage());
+        assertEquals(1, o.getResults().size());
+    }
+
+    @Test
+    public void getOfferById() throws Exception {
+        mockMvc.perform(post("/offer")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\" : \"1\", \"name\" : \"Manicure\", \"price\" : \"55.00\" }")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        ResultActions result = mockMvc.perform(get("/offer/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        MvcResult response = result.andReturn();
+        String contentAsString = response.getResponse().getContentAsString();
+        Response<?> o = objectMapper.readValue(contentAsString, Response.class);
+        assertEquals("200", o.getCode());
+        assertEquals("Offer with id = 1", o.getMessage());
+        assertEquals(1, o.getResults().size());
+    }
+
+    @Test
+    public void getAllOffers() throws Exception {
+        mockMvc.perform(post("/offer")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\" : \"2\", \"name\" : \"Manicure\", \"price\" : \"55.00\" }")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        ResultActions result = mockMvc.perform(get("/offer"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+
+        MvcResult response = result.andReturn();
+        String contentAsString = response.getResponse().getContentAsString();
+        Response<?> o = objectMapper.readValue(contentAsString, Response.class);
+        assertEquals("200", o.getCode());
+        assertEquals("Offers found", o.getMessage());
+        assertEquals(1, o.getResults().size());
+    }
+}

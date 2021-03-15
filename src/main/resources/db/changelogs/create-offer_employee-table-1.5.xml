@@ -5,6 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <changeSet author="Alexandra" id="changelog-1.5">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="offer_employee"/>
+                <foreignKeyConstraintExists foreignKeyName="fk_employee_id" />
+                <foreignKeyConstraintExists foreignKeyName="fk_offer_id" />
+            </not>
+        </preConditions>
         <createTable tableName="offer_employee">
             <column name="id" autoIncrement="true" type="bigint">
                 <constraints nullable="false" primaryKey="true" unique="true"/>
