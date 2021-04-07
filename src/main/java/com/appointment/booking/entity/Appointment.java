@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 public class Appointment {
@@ -17,7 +18,7 @@ public class Appointment {
     private Long id;
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
-    @JsonFormat(pattern="HH:mm")
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime time;
     private Long client_id;
     private Long employee_id;
@@ -28,7 +29,8 @@ public class Appointment {
     @UpdateTimestamp
     private Timestamp updateTime;
 
-    public Appointment() {}
+    public Appointment() {
+    }
 
     private Appointment(AppointmentBuilder builder) {
         this.id = builder.id;
@@ -142,5 +144,29 @@ public class Appointment {
         public Appointment build() {
             return new Appointment(this);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Appointment)) {
+            return false;
+        }
+
+        Appointment a = (Appointment) o;
+
+        return (a.getId().equals(((Appointment) o).id)) && (a.getOffer_id().equals(((Appointment) o).offer_id))
+                && (a.getClient_id().equals(((Appointment) o).client_id)) && (a.getEmployee_id().equals(((Appointment) o).employee_id))
+                && (a.getCompany_id().equals(((Appointment) o).company_id)) && (a.getDate().equals(((Appointment) o).date))
+                && (a.getTime().equals(((Appointment) o).time)) && (a.getCreationTime()).equals(((Appointment) o).creationTime)
+                && (a.getUpdateTime().equals(((Appointment) o).updateTime));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(Appointment.class);
     }
 }

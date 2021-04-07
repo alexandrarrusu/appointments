@@ -11,13 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import static java.util.Collections.emptyList;
 
 @RestController
 public class AppointmentController {
@@ -56,6 +53,23 @@ public class AppointmentController {
                 HttpStatus.OK);
     }
 
+    @RequestMapping(value="/appointment", method = RequestMethod.GET)
+    public ResponseEntity<Response<Appointment>> getAllAppointments(
+            @RequestParam(value = "clientId", required = false) Long clientId,
+            @RequestParam(value = "employeeId", required = false) Long employeeId) {
+        if(clientId != null) {
+            return new ResponseEntity<>(new Response<>("Appointments found for client with id = " + clientId,
+                "200", appointmentService.getAppointmentsByClientId(clientId)), HttpStatus.OK);
+        }
+        if(employeeId != null) {
+            return new ResponseEntity<>(new Response<>("Appointments found for employee with id = " +
+                    employeeId, "200", appointmentService.getAppointmentsByEmployeeId(employeeId)),
+                    HttpStatus.OK);
+        }
+        return new ResponseEntity<>(new Response<>("Appointments found", "200",
+                appointmentService.getAllAppointments()), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/appointment/{id}", method = RequestMethod.PATCH)
     public ResponseEntity<Response<Appointment>> updateAppointment(@PathVariable Long id,
                                                                    @RequestBody Appointment updatedAppointment)
@@ -77,25 +91,10 @@ public class AppointmentController {
                     .build();
         }
         appointmentService.saveAppointment(appointment);
+        List<Appointment> list = new ArrayList<>();
+        list.add(appointment);
         emailService.sendEmailToClient(appointment);
-        return new ResponseEntity<>(new Response<>("Appointment updated", "201", emptyList()),
+        return new ResponseEntity<>(new Response<>("Appointment updated", "201", list),
                 HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value="/appointment", method = RequestMethod.GET)
-    public ResponseEntity<Response<Appointment>> getAllAppointments(
-            @RequestParam(value = "clientId", required = false) Long clientId,
-            @RequestParam(value = "employeeId", required = false) Long employeeId) {
-        if(clientId != null) {
-            return new ResponseEntity<>(new Response<>("Appointments found for client with id = " + clientId,
-                "200", appointmentService.getAppointmentsByClientId(clientId)), HttpStatus.OK);
-        }
-        if(employeeId != null) {
-            return new ResponseEntity<>(new Response<>("Appointments found for employee with id = " +
-                    employeeId, "200", appointmentService.getAppointmentsByEmployeeId(employeeId)),
-                    HttpStatus.OK);
-        }
-        return new ResponseEntity<>(new Response<>("Appointments found", "200",
-                appointmentService.getAllAppointments()), HttpStatus.OK);
     }
 }
