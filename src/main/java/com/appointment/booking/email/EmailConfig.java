@@ -25,7 +25,6 @@ public class EmailConfig {
         mailSender.setPort(port);
         mailSender.setUsername(username);
         mailSender.setPassword(password);
-
         return mailSender;
     }
 }
