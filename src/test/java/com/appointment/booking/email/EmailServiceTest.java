@@ -1,19 +1,10 @@
 package com.appointment.booking.email;
 
 import com.appointment.booking.entity.Appointment;
-import com.appointment.booking.service.impl.ClientServiceImpl;
-import com.appointment.booking.service.impl.CompanyServiceImpl;
-import com.appointment.booking.service.impl.EmployeeServiceImpl;
-import com.appointment.booking.service.impl.OfferServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -69,6 +60,7 @@ public class EmailServiceTest {
         Email email = new Email.EmailBuilder("java@mail.com", "Place1", "Anna",
                 "21/04/2021", LocalTime.of(10,0)).build();
         when(emailDetails.getEmailBodyDetails(appointment)).thenReturn(email);
+
         doNothing().when(javaMailSender).send(message);
         emailService.sendEmailToClient(appointment);
 
