@@ -31,11 +31,11 @@ public class OfferController {
                 HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/offer/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/offer/{id}", method = RequestMethod.GET)
     public ResponseEntity<Response<Offer>> getOfferById(@PathVariable Long id) {
         List<Offer> list = new ArrayList<>();
         Optional<Offer> o = offerService.getOfferById(id);
-        if(o.isPresent()) {
+        if (o.isPresent()) {
             list.add(o.get());
         } else {
             throw new NotFoundException("Offer with id = " + id + " not found");
@@ -44,7 +44,7 @@ public class OfferController {
                 HttpStatus.OK);
     }
 
-    @RequestMapping(value="/offer", method = RequestMethod.GET)
+    @RequestMapping(value = "/offer", method = RequestMethod.GET)
     public ResponseEntity<Response<Offer>> getAllOffers() {
         return new ResponseEntity<>(new Response<>("Offers found", "200",
                 offerService.getAllOffers()), HttpStatus.OK);

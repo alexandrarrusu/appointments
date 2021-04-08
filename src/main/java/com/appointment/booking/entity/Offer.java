@@ -57,7 +57,9 @@ public class Offer {
             return this;
         }
 
-        public Offer build() {return new Offer(this);}
+        public Offer build() {
+            return new Offer(this);
+        }
     }
 
 }

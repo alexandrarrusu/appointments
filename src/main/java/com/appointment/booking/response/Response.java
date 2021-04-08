@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Response<T> {
 
-    private String message;
-    private String code;
-    private List<T> results;
+    private final String message;
+    private final String code;
+    private final List<T> results;
 
     public Response(String message, String code, List<T> results) {
         this.message = message;

@@ -66,7 +66,7 @@ public class AppointmentServiceTest {
         when(appointmentRepository.findById(appointment.getId())).thenReturn(Optional.of(appointment));
         Optional<Appointment> a = appointmentService.getAppointmentById(appointment.getId());
         Appointment app = a.get();
-        assertEquals(appointment.getId(),app.getId());
+        assertEquals(appointment.getId(), app.getId());
         assertEquals(appointment.getClient_id(), app.getClient_id());
     }
 

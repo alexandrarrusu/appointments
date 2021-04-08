@@ -25,7 +25,7 @@ public class EmailDetails {
 
     @Autowired
     public EmailDetails(ClientServiceImpl clientService, EmployeeServiceImpl employeeService,
-                               OfferServiceImpl offerService, CompanyServiceImpl companyService) {
+                        OfferServiceImpl offerService, CompanyServiceImpl companyService) {
         this.clientService = clientService;
         this.employeeService = employeeService;
         this.offerService = offerService;

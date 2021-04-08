@@ -58,7 +58,7 @@ public class EmailServiceTest {
         when(javaMailSender.createMimeMessage()).thenReturn(message);
 
         Email email = new Email.EmailBuilder("java@mail.com", "Place1", "Anna",
-                "21/04/2021", LocalTime.of(10,0)).build();
+                "21/04/2021", LocalTime.of(10, 0)).build();
         when(emailDetails.getEmailBodyDetails(appointment)).thenReturn(email);
 
         doNothing().when(javaMailSender).send(message);

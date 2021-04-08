@@ -29,7 +29,7 @@ public class Offer_EmployeeController {
     @RequestMapping(value = "/offer_employee", method = RequestMethod.POST)
     public ResponseEntity<Response<Offer_Employee>> saveOffer_Employee(@RequestBody Offer_Employee offer_employee) {
         List<Offer_Employee> list = new ArrayList<>();
-        list.add( offer_employeeService.saveOffer_Employee(offer_employee));
+        list.add(offer_employeeService.saveOffer_Employee(offer_employee));
         return new ResponseEntity<>(new Response<>("Offer per employee added", "201", list),
                 HttpStatus.CREATED);
     }
@@ -38,10 +38,10 @@ public class Offer_EmployeeController {
     public ResponseEntity<Response<Offer>> getOffersByEmployeeId(@PathVariable Long id) {
         List<Long> offersId = offer_employeeService.getOffersByEmployeeId(id);
         List<Optional<Offer>> offers = new ArrayList<>();
-        for(Long l : offersId) {
+        for (Long l : offersId) {
             offers.add(offerService.getOfferById(l));
         }
         return new ResponseEntity<>(new Response<>("Offers found for employee with id = " + id, "200",
-               offers.stream().map(Optional::get).collect(Collectors.toList())), HttpStatus.OK);
+                offers.stream().map(Optional::get).collect(Collectors.toList())), HttpStatus.OK);
     }
 }

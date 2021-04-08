@@ -71,8 +71,8 @@ public class Offer_EmployeeControllerTest {
     @Test
     public void getOffersByEmployeeId() throws Exception {
         mockMvc.perform(post("/offer_employee")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\" : \"1\", \"employee_id\" : \"1\", \"offer_id\" : \"1\"}"));
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"id\" : \"1\", \"employee_id\" : \"1\", \"offer_id\" : \"1\"}"));
 
         ResultActions result = mockMvc.perform(get("/offer_employee/1"))
                 .andExpect(status().isOk())

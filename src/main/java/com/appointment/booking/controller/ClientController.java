@@ -31,11 +31,11 @@ public class ClientController {
                 HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/client/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/client/{id}", method = RequestMethod.GET)
     public ResponseEntity<Response<Client>> getClientById(@PathVariable Long id) {
         List<Client> list = new ArrayList<>();
         Optional<Client> c = clientService.getClientById(id);
-        if(c.isPresent()) {
+        if (c.isPresent()) {
             list.add(c.get());
         } else {
             throw new NotFoundException("Client with id = " + id + " not found");
@@ -45,7 +45,7 @@ public class ClientController {
                 HttpStatus.OK);
     }
 
-    @RequestMapping(value="/client", method = RequestMethod.GET)
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
     public ResponseEntity<Response<Client>> getAllClients() {
         return new ResponseEntity<>(new Response<>("Clients found", "200",
                 clientService.getAllClients()), HttpStatus.OK);

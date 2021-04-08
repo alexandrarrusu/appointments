@@ -1,13 +1,11 @@
 package com.appointment.booking.service.impl;
 
 import com.appointment.booking.entity.Appointment;
-import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.repository.AppointmentRepository;
 import com.appointment.booking.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

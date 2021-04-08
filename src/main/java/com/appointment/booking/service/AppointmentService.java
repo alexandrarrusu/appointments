@@ -8,8 +8,12 @@ import java.util.Optional;
 public interface AppointmentService {
 
     Appointment saveAppointment(Appointment appointment);
+
     Optional<Appointment> getAppointmentById(Long id);
+
     List<Appointment> getAllAppointments();
+
     List<Appointment> getAppointmentsByClientId(Long id);
+
     List<Appointment> getAppointmentsByEmployeeId(Long id);
 }

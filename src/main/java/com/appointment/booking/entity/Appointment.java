@@ -29,8 +29,7 @@ public class Appointment {
     @UpdateTimestamp
     private Timestamp updateTime;
 
-    public Appointment() {
-    }
+    public Appointment() {}
 
     private Appointment(AppointmentBuilder builder) {
         this.id = builder.id;
@@ -92,9 +91,7 @@ public class Appointment {
         private Timestamp creationTime;
         private Timestamp updateTime;
 
-        public AppointmentBuilder() {
-
-        }
+        public AppointmentBuilder() {}
 
         public AppointmentBuilder id(Long id) {
             this.id = id;

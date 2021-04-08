@@ -43,7 +43,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void getEmployeeById(){
+    public void getEmployeeById() {
         when(employeeRepository.findById(employee.getId())).thenReturn(Optional.of(employee));
         Optional<Employee> o = employeeService.getEmployeeById(employee.getId());
         Employee e = o.get();

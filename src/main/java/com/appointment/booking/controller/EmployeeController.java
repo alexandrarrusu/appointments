@@ -1,6 +1,5 @@
 package com.appointment.booking.controller;
 
-import com.appointment.booking.entity.Client;
 import com.appointment.booking.entity.Employee;
 import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.response.Response;
@@ -36,7 +35,7 @@ public class EmployeeController {
     public ResponseEntity<Response<Employee>> getEmployeeById(@PathVariable Long id) {
         List<Employee> list = new ArrayList<>();
         Optional<Employee> e = employeeService.getEmployeeById(id);
-        if(e.isPresent()) {
+        if (e.isPresent()) {
             list.add(e.get());
         } else {
             throw new NotFoundException("Employee with id = " + id + " not found");
@@ -46,7 +45,7 @@ public class EmployeeController {
     }
 
 
-    @RequestMapping(value="/employee", method = RequestMethod.GET)
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
     public ResponseEntity<Response<Employee>> getAllEmployees() {
         return new ResponseEntity<>(new Response<>("Employees found", "200",
                 employeeService.getAllEmployees()), HttpStatus.OK);

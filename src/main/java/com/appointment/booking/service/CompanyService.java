@@ -8,7 +8,10 @@ import java.util.Optional;
 public interface CompanyService {
 
     Company saveCompany(Company company);
+
     Optional<Company> getCompanyById(Long id);
+
     List<Company> getAllCompanies();
+
     String getCompanyNameById(Long id);
 }

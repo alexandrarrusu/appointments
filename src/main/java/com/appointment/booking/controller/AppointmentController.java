@@ -40,11 +40,11 @@ public class AppointmentController {
                 HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/appointment/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/appointment/{id}", method = RequestMethod.GET)
     public ResponseEntity<Response<Appointment>> getAppointmentById(@PathVariable Long id) {
         List<Appointment> list = new ArrayList<>();
         Optional<Appointment> a = appointmentService.getAppointmentById(id);
-        if(a.isPresent()) {
+        if (a.isPresent()) {
             list.add(a.get());
         } else {
             throw new NotFoundException("Appointment with id = " + id + " not found");
@@ -53,15 +53,15 @@ public class AppointmentController {
                 HttpStatus.OK);
     }
 
-    @RequestMapping(value="/appointment", method = RequestMethod.GET)
+    @RequestMapping(value = "/appointment", method = RequestMethod.GET)
     public ResponseEntity<Response<Appointment>> getAllAppointments(
             @RequestParam(value = "clientId", required = false) Long clientId,
             @RequestParam(value = "employeeId", required = false) Long employeeId) {
-        if(clientId != null) {
+        if (clientId != null) {
             return new ResponseEntity<>(new Response<>("Appointments found for client with id = " + clientId,
-                "200", appointmentService.getAppointmentsByClientId(clientId)), HttpStatus.OK);
+                    "200", appointmentService.getAppointmentsByClientId(clientId)), HttpStatus.OK);
         }
-        if(employeeId != null) {
+        if (employeeId != null) {
             return new ResponseEntity<>(new Response<>("Appointments found for employee with id = " +
                     employeeId, "200", appointmentService.getAppointmentsByEmployeeId(employeeId)),
                     HttpStatus.OK);
@@ -76,7 +76,7 @@ public class AppointmentController {
             throws MessagingException {
         Optional<Appointment> initialAppointment = appointmentService.getAppointmentById(id);
         Appointment appointment = null;
-        if(initialAppointment.isPresent()) {
+        if (initialAppointment.isPresent()) {
             Long appointmentId = initialAppointment.get().getId();
             Timestamp creationTime = initialAppointment.get().getCreationTime();
             appointment = new Appointment.AppointmentBuilder()

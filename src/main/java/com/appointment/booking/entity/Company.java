@@ -14,7 +14,7 @@ public class Company {
     private String name;
     private String address;
 
-    public Company(){}
+    public Company() {}
 
     private Company(CompanyBuilder builder) {
         this.id = builder.id;

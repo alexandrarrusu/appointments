@@ -53,9 +53,7 @@ public class Client {
         private String email;
         private String phone;
 
-        public ClientBuilder() {
-
-        }
+        public ClientBuilder() {}
 
         public ClientBuilder id(Long id) {
             this.id = id;

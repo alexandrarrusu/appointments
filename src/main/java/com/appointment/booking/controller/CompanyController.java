@@ -31,11 +31,11 @@ public class CompanyController {
                 HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/company/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/company/{id}", method = RequestMethod.GET)
     public ResponseEntity<Response<Company>> getCompanyById(@PathVariable Long id) {
         List<Company> list = new ArrayList<>();
         Optional<Company> p = companyService.getCompanyById(id);
-        if(p.isPresent()) {
+        if (p.isPresent()) {
             list.add(p.get());
         } else {
             throw new NotFoundException("Company with id = " + id + " not found");
@@ -44,7 +44,7 @@ public class CompanyController {
                 HttpStatus.OK);
     }
 
-    @RequestMapping(value="/company", method = RequestMethod.GET)
+    @RequestMapping(value = "/company", method = RequestMethod.GET)
     public ResponseEntity<Response<Company>> getAllCompanies() {
         return new ResponseEntity<>(new Response<>("Companies found", "200",
                 companyService.getAllCompanies()), HttpStatus.OK);

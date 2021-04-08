@@ -9,8 +9,12 @@ import java.util.Optional;
 public interface OfferService {
 
     Offer saveOffer(Offer offer);
+
     Optional<Offer> getOfferById(Long id);
+
     List<Offer> getAllOffers();
+
     String getOfferNameById(Long id);
+
     BigDecimal getOfferPriceById(Long id);
 }
