@@ -3,7 +3,7 @@ package com.appointment.booking.controller;
 import com.appointment.booking.entity.Offer;
 import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.response.Response;
-import com.appointment.booking.service.impl.OfferServiceImpl;
+import com.appointment.booking.service.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import java.util.Optional;
 @RestController
 public class OfferController {
 
-    private final OfferServiceImpl offerService;
+    private final OfferService offerService;
 
     @Autowired
-    public OfferController(OfferServiceImpl offerService) {
+    public OfferController(OfferService offerService) {
         this.offerService = offerService;
     }
 

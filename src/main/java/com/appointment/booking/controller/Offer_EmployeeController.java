@@ -3,8 +3,8 @@ package com.appointment.booking.controller;
 import com.appointment.booking.entity.Offer;
 import com.appointment.booking.entity.Offer_Employee;
 import com.appointment.booking.response.Response;
+import com.appointment.booking.service.Offer_EmployeeService;
 import com.appointment.booking.service.impl.OfferServiceImpl;
-import com.appointment.booking.service.impl.Offer_EmployeeServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @RestController
 public class Offer_EmployeeController {
 
-    private final Offer_EmployeeServiceImpl offer_employeeService;
+    private final Offer_EmployeeService offer_employeeService;
     private final OfferServiceImpl offerService;
 
-    public Offer_EmployeeController(Offer_EmployeeServiceImpl offer_employeeService,
+    public Offer_EmployeeController(Offer_EmployeeService offer_employeeService,
                                     OfferServiceImpl offerService) {
         this.offer_employeeService = offer_employeeService;
         this.offerService = offerService;

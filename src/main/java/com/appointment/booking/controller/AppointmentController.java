@@ -4,7 +4,7 @@ import com.appointment.booking.email.EmailService;
 import com.appointment.booking.entity.Appointment;
 import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.response.Response;
-import com.appointment.booking.service.impl.AppointmentServiceImpl;
+import com.appointment.booking.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +19,11 @@ import java.util.Optional;
 @RestController
 public class AppointmentController {
 
-    private final AppointmentServiceImpl appointmentService;
+    private final AppointmentService appointmentService;
     private final EmailService emailService;
 
     @Autowired
-    public AppointmentController(AppointmentServiceImpl appointmentService,
+    public AppointmentController(AppointmentService appointmentService,
                                  EmailService emailService) {
         this.appointmentService = appointmentService;
         this.emailService = emailService;

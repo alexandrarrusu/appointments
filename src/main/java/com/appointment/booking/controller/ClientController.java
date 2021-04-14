@@ -3,7 +3,7 @@ package com.appointment.booking.controller;
 import com.appointment.booking.entity.Client;
 import com.appointment.booking.exception.NotFoundException;
 import com.appointment.booking.response.Response;
-import com.appointment.booking.service.impl.ClientServiceImpl;
+import com.appointment.booking.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +16,10 @@ import java.util.Optional;
 @RestController
 public class ClientController {
 
-    private final ClientServiceImpl clientService;
+    private final ClientService clientService;
 
     @Autowired
-    public ClientController(ClientServiceImpl clientService) {
+    public ClientController(ClientService clientService) {
         this.clientService = clientService;
     }
 
